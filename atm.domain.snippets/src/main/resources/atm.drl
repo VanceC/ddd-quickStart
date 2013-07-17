@@ -1,0 +1,21 @@
+import com.rhc.ddd.domain.Account;
+import com.rhc.ddd.domain.TransferRequest;
+
+rule "Comfort"
+	when
+	then
+		System.out.println("Comfort");
+end
+
+rule "Transfer"
+dialect "mvel"
+	when 
+	    fromAccount:Account()
+	    toAccount:Account()
+	    tr:TransferRequest(fromAccountId == fromAccount.accountId && toAccountId == toAccount.accountId)
+	then
+		System.out.println("Transfer");
+		fromAccount.balance = fromAccount.balance - tr.amount;
+		toAccount.balance = toAccount.balance + tr.amount;
+		tr.success = true;
+end

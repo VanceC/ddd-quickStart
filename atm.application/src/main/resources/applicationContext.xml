@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="repositoryApi" class="com.rhc.ddd.infrastructure.AtmRepositoryApiImpl">
+	</bean>
+
+	<bean id="accountService" class="com.rhc.ddd.domain.AccountServiceImpl">
+		<property name="atmRepository" ref="repositoryApi" />
+	</bean>
+
+</beans>
